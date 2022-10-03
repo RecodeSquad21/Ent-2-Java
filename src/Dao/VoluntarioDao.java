@@ -15,7 +15,7 @@ public class VoluntarioDao {
 		public void save (Voluntario voluntario) {
 			
 			//criar a query
-			String sql= "INSERT INTO Voluntario(nome,idade, disponibilidade) VALUES(?,?,?)";
+			String sql= "INSERT INTO Voluntario(nome, sobrenome, cidade, estado, cep, email, apresentacao) VALUES(?,?,?,?,?,?,?)";
 			
 			//fazer conexao
 			Connection conn= null;
@@ -27,9 +27,12 @@ public class VoluntarioDao {
 				pstm = conn.prepareStatement(sql);
 				
 				pstm.setString(1,voluntario.getNome());
-				pstm.setInt(2,voluntario.getIdade());
-				pstm.setString(3,voluntario.getDisponibilidade());
-				
+				pstm.setString(2,voluntario.getSobrenome());
+				pstm.setString(3,voluntario.getCidade());
+				pstm.setString(4,voluntario.getEstado());
+				pstm.setString(5,voluntario.getCep());
+				pstm.setString(6,voluntario.getEmail());
+				pstm.setString(7,voluntario.getApresentacao());
 				pstm.execute();
 			}catch(Exception e){
 				e.printStackTrace();
@@ -75,8 +78,14 @@ public class VoluntarioDao {
 				while(rset.next()) {
 					Voluntario voluntario = new Voluntario();
 					
-					voluntario.setId(rset.getInt(""));
-					voluntario.setNome(rset.getString("nome"));// lembrar de setar os outros atributos
+					voluntario.setId(rset.getInt("id"));
+					voluntario.setNome(rset.getString("nome"));
+					voluntario.setSobrenome(rset.getString("sobrenome"));
+					voluntario.setCidade(rset.getString("cidade"));
+					voluntario.setEstado(rset.getString("estado"));
+					voluntario.setCep(rset.getString("cep"));
+					voluntario.setEmail(rset.getString("email"));
+					voluntario.setApresentacao(rset.getString("apresentacao"));
 					
 					voluntarios.add(voluntario);
 				}
@@ -102,7 +111,7 @@ public class VoluntarioDao {
 		}
 		
 		//UpDate
-		public void update(Voluntario voluntario) {
+		public static void update(Voluntario voluntario) {
 			String sql = "UPDATE voluntario SET nome= ? WHERE id = ?";
 			
 			Connection conn = null;
@@ -114,8 +123,14 @@ public class VoluntarioDao {
 				pstm =conn.prepareStatement(sql);
 				
 				//Adiciona o valor nos parametros
-				pstm.setString(1, voluntario.getNome()); //nao esquecer de setar outros atributos
-				pstm.setInt(2, voluntario.getId());
+				pstm.setString(1,voluntario.getNome());
+				pstm.setString(2,voluntario.getSobrenome());
+				pstm.setString(3,voluntario.getCidade());
+				pstm.setString(4,voluntario.getEstado());
+				pstm.setString(5,voluntario.getCep());
+				pstm.setString(6,voluntario.getEmail());
+				pstm.setString(7,voluntario.getApresentacao());
+				pstm.setInt(8, voluntario.getId());
 				
 				pstm.execute();
 				

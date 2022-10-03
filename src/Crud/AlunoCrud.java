@@ -16,12 +16,15 @@ public class AlunoCrud {
 		Scanner input = new  Scanner(System.in);
 		
 		// setar as variaveis de navegaçao
-		int opcao =0;
+		int opcao = 0;
 		int posicao = 0;
 		
 		int id = 0;
 		String nome = "";
-		String idade = "";
+		String endereco = "";
+		String cidade = "";
+		String estado = "";
+		String cep = "";
 		
 		//instancia  da lista que vai armazenar
 		List<Aluno> Aluno = new ArrayList<Aluno>();
@@ -45,39 +48,57 @@ public class AlunoCrud {
 				System.out.println("Digite o nome:");
 				nome = input.nextLine();
 				nome = input.nextLine();
-				System.out.println("Digite a idade:");
-				idade = input.nextLine();
+				System.out.println("Digite o Endereço:");
+				endereco = input.nextLine();
+				System.out.println("Digite o Cidade:");
+				cidade = input.nextLine();
+				System.out.println("Digite o Estado:");
+				estado = input.nextLine();
+				System.out.println("Digite o Cep:");
+				cep = input.nextLine();
 				
 				Aluno aluno = new Aluno();
 				aluno.setNome(nome);
+				aluno.setEndereco(endereco);
+				aluno.setCidade(cidade);
+				aluno.setEstado(estado);
+				aluno.setCep(cep);
 				
-				alunoDAO.save(aluno);
+				AlunoDao.save(aluno);
 				
 				System.out.println("***Cadastrado***\n");
 				break;
-case 2:
+			case 2:
 				for (Aluno a : alunoDAO.getAluno()) {
-					System.out.println("Id: " + a.getId() + ", Nome: " + a.getNome() + ", Idade: " + a.getIdade());
+					System.out.println("Id: " + a.getId() + ", Nome: " + a.getNome() + ", Endereço: " + a.getEndereco() + ", Cidade: " + a.getCidade() + ", Estado: " + a.getEstado() + ", Cep: " + a.getCep());
 				}
 				
 				System.out.println("*Consulta Finalizada*");
 				break;
-case 3:
+			case 3:
 				System.out.println("ID para exclusão: ");
 				posicao = input.nextInt();
 				
 				alunoDAO.deleteById(posicao);
 				System.out.println("Aluno Excluído");
 				break;
-case 4:
+			case 4:
 				System.out.println("Atualizando cadastro do Aluno");
 				System.out.println("Digite o Id do Aluno:");
 				id = input.nextInt();
 				System.out.println("Digite o novo nome do Aluno:");
 				nome = input.nextLine();
 				nome = input.nextLine();
+				System.out.println("Digite o novo Endereço:");
+				endereco = input.nextLine();
+				System.out.println("Digite o novo Cidade:");
+				cidade = input.nextLine();
+				System.out.println("Digite o novo Estado:");
+				estado = input.nextLine();
+				System.out.println("Digite o novo Cep:");
+				cep = input.nextLine();
 				
-				Aluno aluno1 = new Aluno(id, nome, idade);
+				Aluno aluno1 = new Aluno(id, nome, endereco, cidade, estado, cep);
 				AlunoDao.update(aluno1);
 				break;	
 

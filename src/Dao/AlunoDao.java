@@ -12,10 +12,10 @@ import model.Aluno;
 public class AlunoDao {
 	
 	//create
-		public static void save(Aluno alunos) {
+		public static void save(Aluno aluno) {
 			
 			//criar a query
-			String sql= "INSERT INTO Aluno(nome,idade) VALUES(?,?)";
+			String sql = "INSERT INTO Aluno (nome, endereco, cidade, estado, cep) VALUES(?,?,?,?,?)";
 			
 			//fazer conexao
 			Connection conn= null;
@@ -26,8 +26,11 @@ public class AlunoDao {
 				
 				pstm = conn.prepareStatement(sql);
 				
-				pstm.setString(1,alunos.getNome());
-				pstm.setString(2,alunos.getIdade());
+				pstm.setString(1,aluno.getNome());
+				pstm.setString(2,aluno.getEndereco());
+				pstm.setString(3,aluno.getCidade());
+				pstm.setString(4,aluno.getEstado());
+				pstm.setString(5,aluno.getCep());
 				
 				pstm.execute();
 				
@@ -81,7 +84,10 @@ public class AlunoDao {
 					
 					aluno.setId(rset.getInt("id"));
 					aluno.setNome(rset.getString("nome"));
-					aluno.setIdade(rset.getString("idade"));
+					aluno.setEndereco(rset.getString("endereco"));
+					aluno.setCidade(rset.getString("cidade"));
+					aluno.setEstado(rset.getString("estado"));
+					aluno.setCep(rset.getString("cep"));
 					
 					alunos.add(aluno);
 				}
@@ -108,7 +114,7 @@ public class AlunoDao {
 		
 		//UpDate
 		public static void update(Aluno aluno) {
-			String sql = "UPDATE aluno SET nome= ?, idade= ? WHERE id = ?";
+			String sql = "UPDATE aluno SET nome= ?, endereco= ?, cidade= ?, estado= ?, cep= ? WHERE id = ?";
 			
 			Connection conn = null;
 			PreparedStatement pstm = null;
@@ -120,8 +126,11 @@ public class AlunoDao {
 				
 				//Adiciona o valor nos parametros
 				pstm.setString(1, aluno.getNome());
-				pstm.setString(2, aluno.getIdade());
-				pstm.setInt(3, aluno.getId());
+				pstm.setString(2, aluno.getEndereco());
+				pstm.setString(3, aluno.getCidade());
+				pstm.setString(4, aluno.getEstado());
+				pstm.setString(5, aluno.getCep());
+				pstm.setInt(6, aluno.getId());
 				
 				pstm.execute();
 				

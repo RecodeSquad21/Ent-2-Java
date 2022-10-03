@@ -7,7 +7,10 @@ public class Aluno {
 	
 	private int id;
 	private String nome;
-	private String idade;
+	private String endereco;
+	private String cidade;
+	private String estado;
+	private String cep;
 	
 	private List<Aluno> aluno = new ArrayList<Aluno >();
 	
@@ -15,16 +18,16 @@ public class Aluno {
 		
 	}
 
-	public Aluno(int id, String nome, String idade, String disponibilidade) {
+	public Aluno(int id, String nome, String endereco, String cidade, String estado, String cep) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.idade = idade;
+		this.endereco = endereco;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.cep = cep;
 	}
 
-	public Aluno(int id2, String nome2, String idade2) {
-		// TODO Auto-generated constructor stub
-	}
 
 	public int getId() {
 		return id;
@@ -42,12 +45,37 @@ public class Aluno {
 		this.nome = nome;
 	}
 
-	public String getIdade() {
-		return idade;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setIdade(String idade) {
-		this.idade = idade;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
 
 }
